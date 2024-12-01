@@ -78,12 +78,19 @@ vector<std::string> faces
 
 vector<std::string> faces1
 {
-	"resources/textures/metal.png",  //r
-	"resources/textures/metal.png",  //l
-	"resources/textures/metal.png",  //u
-	"resources/textures/metal.png",  //d
-	"resources/textures/metal.png",  //f
-	"resources/textures/metal.png",  //b
+	//"resources/textures/metal.png",  //r
+	//"resources/textures/metal.png",  //l
+	//"resources/textures/metal.png",  //u
+	//"resources/textures/metal.png",  //d
+	//"resources/textures/metal.png",  //f
+	//"resources/textures/metal.png",  //b
+
+	"resources/textures/wall.jpg",  //r
+	"resources/textures/wall.jpg",  //l
+	"resources/textures/wall.jpg",  //u
+	"resources/textures/wall.jpg",  //d
+	"resources/textures/wall.jpg",  //f
+	"resources/textures/wall.jpg",  //b
 };
 
 class Skybox {

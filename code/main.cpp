@@ -247,7 +247,8 @@ int main()
 	unsigned int normalMap2 = loadTexture("resources/textures/bookBottom_normal.jpg");
 
 	//floor
-	unsigned int floorTexture = loadTexture("resources/textures/metal.png");
+	//unsigned int floorTexture = loadTexture("resources/textures/metal.png");
+	unsigned int floorTexture = loadTexture("resources/textures/floor.jpg");
 
 	// shader configuration
 	// --------------------
