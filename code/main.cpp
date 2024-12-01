@@ -48,8 +48,6 @@ DWORD WINAPI load4(LPVOID lpParamter)
 	return 0L;
 }
 
-
-
 // settings
 const unsigned int SCR_WIDTH = 1280;
 const unsigned int SCR_HEIGHT = 720;
@@ -158,7 +156,7 @@ int main()
 
 	// glfw window creation
 	// --------------------
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "The Ancient Veins of Bian city and Luo city", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -203,15 +201,15 @@ int main()
 
 	PlyModel happy_recon1_0(name4, 0);
 
-	floorShader.use();
+	floorShader.use();//激活着色器程序
 	floorShader.setInt("texture1", 0);
 
 	shaderBall.use();
-	shaderBall.setInt("albedoMap", 0);
-	shaderBall.setInt("normalMap", 1);
-	shaderBall.setInt("metallicMap", 2);
-	shaderBall.setInt("roughnessMap", 3);
-	shaderBall.setInt("aoMap", 4);
+	shaderBall.setInt("albedoMap", 0);//漫反射贴图
+	shaderBall.setInt("normalMap", 1);//法线贴图
+	shaderBall.setInt("metallicMap", 2);//金属度贴图
+	shaderBall.setInt("roughnessMap", 3);//粗糙度贴图
+	shaderBall.setInt("aoMap", 4);//环境光遮蔽贴图，模拟表面阴影和遮蔽效应，使物体看起来更有立体感
 
 	// shader configuration
     // --------------------
@@ -237,8 +235,6 @@ int main()
 
 	// load textures
 	// -------------
-	/*unsigned int diffuseMap = loadTexture("resources/textures/book.jpg");
-	unsigned int normalMap = loadTexture("resources/textures/book_normal1.jpg");*/
 	unsigned int diffuseMap = loadTexture("resources/textures/interface.jpg");
 	unsigned int normalMap = loadTexture("resources/textures/interface_normal.png");
 	unsigned int diffuseMap1 = loadTexture("resources/textures/bookLeft.png");
@@ -247,7 +243,6 @@ int main()
 	unsigned int normalMap2 = loadTexture("resources/textures/bookBottom_normal.jpg");
 
 	//floor
-	//unsigned int floorTexture = loadTexture("resources/textures/metal.png");
 	unsigned int floorTexture = loadTexture("resources/textures/floor.jpg");
 
 	// shader configuration
@@ -274,10 +269,12 @@ int main()
 
 		// lights
 	// ------
-	glm::vec3 lightPositions[] = {
+	glm::vec3 lightPositions[] = 
+	{
 		glm::vec3(5.0f, 5.0f, 5.0f),
 	};
-	glm::vec3 lightColors[] = {
+	glm::vec3 lightColors[] = 
+	{
 		glm::vec3(150.0f, 150.0f, 150.0f),
 	};
 	int nrRows = 7;
@@ -297,7 +294,8 @@ int main()
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
-	float planeVertices[] = {
+	float planeVertices[] = 
+	{
 		// positions          // texture Coords 
 		 5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
 		-5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
@@ -379,12 +377,14 @@ int main()
 		{
 			if(time > 12 && time < 15)
 				camera.ProcessKeyboard(FORWARD, deltaTime);
+
 			// configure view/projection matrices
 			projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 			glm::mat4 view = camera.GetViewMatrix();
 			shader.use();
 			shader.setMat4("projection", projection);
 			shader.setMat4("view", view);
+
 			// render normal-mapped quad
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
@@ -537,6 +537,7 @@ int main()
 			model = glm::scale(model, glm::vec3(0.1f * alpha, 0.1f * alpha, 0.1f * alpha));
 			shaderBall.setMat4("model", model);
 			renderSphere();
+
 			// render light source (simply re-render sphere at light positions)
 			// this looks a bit off as we use the same shader, but it'll make their positions obvious and 
 			// keeps the codeprint small.
